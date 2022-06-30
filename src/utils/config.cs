@@ -53,5 +53,4 @@ namespace Config
             return string.Join("",words);
         }
     }
-
 }
