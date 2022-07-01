@@ -5,6 +5,7 @@ parameters needed for our program to work
 */
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 
 namespace Config
@@ -44,7 +45,7 @@ namespace Config
         {
             //provide a list of delimeters
             //Split the string, and return only what's on the right hand side of any ":"
-            string[] delimeters = { " : ", ": ", ":"};
+            string[] delimeters = { " = ", "= ", "="};
             string[] words = fileline.Split(delimeters, StringSplitOptions.RemoveEmptyEntries);
 
             //Drop the first element, combine the rest of the array elements
