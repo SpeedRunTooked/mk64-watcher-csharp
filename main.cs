@@ -17,7 +17,7 @@ namespace MainSpace
             //Test for correct reading of EEP file
             EepWatcher watcher = new EepWatcher();
             watcher.read_directly();
-            watcher.display_eep();
+            //watcher.display_eep();
 
         }
     }
