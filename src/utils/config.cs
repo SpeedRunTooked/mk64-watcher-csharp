@@ -45,13 +45,13 @@ namespace Config
         {
             //provide a list of delimeters
             //Split the string, and return only what's on the right hand side of any ":"
-            string[] delimeters = { " = ", "= ", "="};
+            string[] delimeters = { " : ", ": ", ":"};
             string[] words = fileline.Split(delimeters, StringSplitOptions.RemoveEmptyEntries);
 
             //Drop the first element, combine the rest of the array elements
             //We have to do this since one of the text fields is a url, which has https://...
             words = words.Skip(1).ToArray();
-            return string.Join("",words);
+            return string.Join(":",words);
         }
     }
 }

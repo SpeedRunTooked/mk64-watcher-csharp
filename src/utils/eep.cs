@@ -19,6 +19,20 @@ namespace eep
             //Open EEP file
             byte[] f = File.ReadAllBytes(eepath);
 
+            //Print the EEP file
+            display_eep(f);
+
+
+            //CALL TRACK RECORD HERE
+            
+        }
+
+        static void display_eep(byte[] f)
+        {
+            //Print a bytelist f, specifically the EEP file
+            Console.WriteLine("Display EEP file:");
+            foreach (byte b in f) { Console.Write(b + ","); };
+            Console.WriteLine();
         }
     }
 }
