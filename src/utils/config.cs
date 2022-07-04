@@ -34,6 +34,7 @@ namespace Config
         public void display_cfg()
         {
             //Test method to print out our member values
+            Console.WriteLine("Displaying config file: ");
             Console.WriteLine("Username: " + username);
             Console.WriteLine("userID: " + userID);
             Console.WriteLine("eep_path: " + eep_path);
