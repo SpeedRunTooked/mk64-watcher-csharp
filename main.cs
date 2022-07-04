@@ -12,7 +12,7 @@ namespace MainSpace
             //Test for correct reading of config file.
             ConfigReader cfg = new ConfigReader();
             cfg.get_config();
-            cfg.print_cfg();
+            cfg.display_cfg();
 
             //Test for correct reading of EEP file
             EepWatcher watcher = new EepWatcher();

@@ -31,7 +31,7 @@ namespace Config
             db_endpoint = parse_yaml_line(fileText[4]);
 
         }
-        public void print_cfg()
+        public void display_cfg()
         {
             //Test method to print out our member values
             Console.WriteLine("Username: " + username);
