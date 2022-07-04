@@ -8,6 +8,8 @@ namespace eep
 {
     class EepWatcher
     {
+        public byte[]? eep_file;
+
         //public List<Dictionary<string, TrackRecords>> read_directly()
         public void read_directly()
         {
@@ -17,21 +19,17 @@ namespace eep
             string eepath = cfg.eep_path + cfg.eep_file;
 
             //Open EEP file
-            byte[] f = File.ReadAllBytes(eepath);
-
-            //Print the EEP file
-            display_eep(f);
-
+            eep_file = File.ReadAllBytes(eepath);
 
             //CALL TRACK RECORD HERE
             
         }
 
-        static void display_eep(byte[] f)
+        public void display_eep()
         {
             //Print a bytelist f, specifically the EEP file
             Console.WriteLine("Display EEP file:");
-            foreach (byte b in f) { Console.Write(b + ","); };
+            foreach (byte b in eep_file) { Console.Write(b + ","); };
             Console.WriteLine();
         }
     }
