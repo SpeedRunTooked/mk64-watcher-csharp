@@ -23,7 +23,7 @@ namespace eep
             //Then read the next 24 bytes, etc etc.
             //We don't want to read the whole file, since there is a lot of stuff that's not needed
             //So just every 24 bits for every track.
-            FileStream stream = new FileStream(eepath, FileMode.Open, FileAccess.Read);
+            FileStream stream = new FileStream(eepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             byte[] block = new byte[24];
             int i = 0;
             foreach (string track in Constants.TRACK_NAMES) {
