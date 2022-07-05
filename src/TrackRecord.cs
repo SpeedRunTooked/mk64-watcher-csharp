@@ -58,5 +58,13 @@ namespace TrackRecord
             }
         }
 
+        public void display_records()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("3lap Record " + i +": Char: " + records[i][0] + ". Time: " + records[i][1]);
+            }
+            Console.WriteLine("FLap Record: Char: " + records[5][0] + ". Time: " + records[5][1]);
+        }
     }
 }
