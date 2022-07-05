@@ -10,6 +10,11 @@ namespace MainSpace
     {
         public static void Main(string[] args)
         {
+            //kick's off the watcher loop
+            EepWatcher.watch_eep();
+        }
+        public static void SomeTests()
+        {
             //Test for correct reading of config file.
             ConfigReader cfg = new ConfigReader();
             cfg.get_config();
