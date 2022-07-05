@@ -76,8 +76,6 @@ namespace eep
             EepBuilder orig = new EepBuilder();
             orig.read_directly(eepath);
 
-            EepBuilder neep = new EepBuilder();
-
             int i = 0;
 
             //Observe for change
@@ -85,6 +83,7 @@ namespace eep
             while (true)
             {
                 Thread.Sleep(5000);
+                EepBuilder neep = new EepBuilder(); //Do we need to garbagecollect this? Will it cause it to grow?
                 neep.read_directly(eepath);
                 MK64.compare_reocrds(orig.all_records, neep.all_records);
                 orig = neep;
