@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading;
 using System.IO;
 using GameData;
 using TrackRecord;
 using Config;
+using mk64;
 
 namespace eep
 {
     class EepBuilder
     {
-        public byte[]? eep_file;
-        public string? eepath;
         public TrackRecords[] all_records = new TrackRecords[16]; //list of all records
 
-        public void read_directly()
+        public void read_directly(string eepath)
         {
             /*
             Open EEP path, read as a list of bytes, call TrackRecords, and build array
             of all track records (all_records).
             */
-
-            //Get EEP file path from config file
-            ConfigReader cfg = new ConfigReader();
-            cfg.get_config();
-            eepath = cfg.eep_path + cfg.eep_file;
 
             //Read 24 bytes from file, and call TrackRecord to build TrackRecords object for each track
             //Then read the next 24 bytes, etc etc.
@@ -43,12 +37,12 @@ namespace eep
             stream.Close();
         }
 
-        public void display_eep()
+        public void display_eep(string eepath)
         {
             //Print bytelist file, specifically the EEP file
 
             //Open EEP file
-            eep_file = File.ReadAllBytes(eepath);
+            byte[] eep_file = File.ReadAllBytes(eepath);
 
             //Display it
             Console.WriteLine("Display EEP file:");
@@ -67,4 +61,31 @@ namespace eep
     }
 
     class EepWatcher
+    {
+        public static void watch_eep()
+        {
+            /*THE loop: Get eep data, and check it against the previous data
+            loop forever*/
+
+            //Get EEP file path from config file
+            ConfigReader cfg = new ConfigReader();
+            cfg.get_config();
+            string eepath = cfg.eep_path + cfg.eep_file;
+
+            //Build EepBuilders
+            EepBuilder orig = new EepBuilder();
+            orig.read_directly(eepath);
+
+            EepBuilder neep = new EepBuilder();
+
+            //Observe for change
+            while (true)
+            {
+                Thread.Sleep(5000);
+                neep.read_directly(eepath);
+                MK64.compare_reocrds(orig.all_records, neep.all_records);
+                orig = neep;
+            }
+        }
+    }
 }
