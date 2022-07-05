@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Linq;
 using GameData;
 
 namespace TrackRecord
 {
     class TrackRecords
     {
-        public int[] build_record(byte[] bs)
+        //An array of all 6 'records' (which are arrays themselves) for a given track, this is what we return
+        public int?[][] records = new int?[6][]; 
+
+        public void build_record(byte[] bs)
         {
             /*
             Receive 24 bytes from EEP (which is all the data for a single track
@@ -14,7 +18,10 @@ namespace TrackRecord
             The records are formatted by {'character': id, 'time': ms}
             */
 
-            int[] track_records; //An array of all 6 'records' (which are arrays themselves), this is what we return
+            int?[] single_record = new int?[2]; //A single record for either 3lap or flap, contains [charID, timeMS]
+            int? record_time; //The time in ms
+            int? character; //the character ID
+            int record_counter = 0;
 
             //Iterate over each set of 3 bytes, which represents a single time for a single record
             for (int i = 0; i < 18; i += 3)
@@ -26,37 +33,29 @@ namespace TrackRecord
                 int e = bs[i + 2] >> 4;
                 int f = bs[i + 2] & 0b00001111;
 
-                Console.WriteLine("a: " + a);
-                Console.WriteLine("b: " + b);
-                Console.WriteLine("c: " + c);
-                Console.WriteLine("d: " + d);
-                Console.WriteLine("e: " + e);
-                Console.WriteLine("f: " + f);
-
-                /*TODO - The numbers seem too big in the below calculation
-                 * Looking at the python code, not sure why each value is multiplied by 2.
-                 * Check in python, is each letter an int? or Byte?
-                 * If so, what is each line returning as a value? (i.e. the f*2**16).
-                 * track it each step of the way, figure out if we're doing equivalent things
-                 * We're casting the above to int... but the numbers look right. Look at converting hex to int.
-
-
-                /*
                 //Calculate time, by multiplying the shifted bytes to their correspondant positional exponents
-                int time = (Convert.ToInt32(Math.Pow(f * 2, 16)) +
-                            Convert.ToInt32(Math.Pow(c * 2, 12)) +
-                            Convert.ToInt32(Math.Pow(d * 2, 8 )) +
-                            Convert.ToInt32(Math.Pow(a * 2, 4 )) +
-                            b)*10;
+                record_time = (f * Convert.ToInt32(Math.Pow(2, 16)) +
+                                c * Convert.ToInt32(Math.Pow(2, 12)) +
+                                d * Convert.ToInt32(Math.Pow(2, 8)) +
+                                a * Convert.ToInt32(Math.Pow(2, 4)) +
+                                b) * 10;
 
-                Console.WriteLine("Track Record: " + time);
-                */
+                character = e;
+
+                //Check that time is not "default null time". Cannot do this in bytes, since we can't do comparisons between bytes
+                if (record_time == 6000000)
+                {
+                    record_time = null;
+                    character = null;
+                }
+
+                //Build our track_records array
+                single_record[0] = character;
+                single_record[1] = record_time;
+                records[record_counter] = single_record;
+                record_counter += 1;
+
             }
-
-            foreach (byte b in bs) { Console.Write(b + ","); };
-
-            int[] x = { 1, 3 };
-            return x;
         }
 
     }
