@@ -7,6 +7,7 @@ namespace TrackRecord
     class TrackRecords
     {
         //An array of all 6 'records' (which are arrays themselves) for a given track, this is what we return
+        //This is a jagged array, not a multidimensional array
         public int?[][] records = new int?[6][];
 
         public string name = "no name";
