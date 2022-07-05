@@ -7,7 +7,9 @@ namespace TrackRecord
     class TrackRecords
     {
         //An array of all 6 'records' (which are arrays themselves) for a given track, this is what we return
-        public int?[][] records = new int?[6][]; 
+        public int?[][] records = new int?[6][];
+
+        public string name = "no name";
 
         public void build_record(byte[] bs)
         {
