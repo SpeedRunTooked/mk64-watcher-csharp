@@ -11,29 +11,20 @@ namespace eep
     {
         public byte[]? eep_file;
         public string? eepath;
+        public TrackRecords[]? all_records = new TrackRecords[16]; //list of all records
 
         //public List<Dictionary<string, TrackRecords>> read_directly()
         public void read_directly()
         {
             /*
-            Open EEP path, read as a list of bytes, call TrackRecords, and return an array
-            of all track records.
+            Open EEP path, read as a list of bytes, call TrackRecords, and build array
+            of all track records (all_records).
             */
 
             //Get EEP file path from config file
             ConfigReader cfg = new ConfigReader();
             cfg.get_config();
             eepath = cfg.eep_path + cfg.eep_file;
-
-            //List of track records (16 tracks)
-            //NOTE, to add a line, we would do like:
-                //all_records[0] = new int[2];
-                //all_records[1] = new int[2];
-                //...
-            //OR
-                //all_records[0] = new int[] {"1", "12345"}
-                //...
-            int[][] all_records = new int[16][];
 
             //Read 24 bytes from file, and call TrackRecord to build TrackRecords object for each track
             //Then read the next 24 bytes, etc etc.
@@ -44,7 +35,10 @@ namespace eep
                 Console.WriteLine("Parsing " + track);
                 stream.Read(block, 0, 24);
                 TrackRecords tr = new TrackRecords();
-                all_records[i] = tr.build_record(block);
+                tr.name = track;
+                tr.build_record(block);
+                tr.display_records();
+                all_records[i] = tr;
             };
             stream.Close();
         }
