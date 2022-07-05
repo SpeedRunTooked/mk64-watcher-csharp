@@ -25,5 +25,35 @@ namespace GameData
             "Banshee Boardwalk",
             "Rainbow Road"
         };
+        public static readonly string[] TRACK_SLUGS =
+        {
+            "luigiraceway",
+            "moomoofarm",
+            "koopatroopabeach",
+            "kalimaridesert",
+            "toadsturnpike",
+            "frappesnowland",
+            "chocomountain",
+            "marioraceway",
+            "wariostadium",
+            "sherbetland",
+            "royalraceway",
+            "bowserscastle",
+            "dksjungleparkway",
+            "yoshivalley",
+            "bansheeboardwalk",
+            "rainbowroad"
+        };
+        public static readonly string[] RACER_IDS =
+        {
+            "Mario",
+            "Luigi",
+            "Yoshi",
+            "Toad",
+            "DK",
+            "Wario",
+            "Peach",
+            "Bowser"
+        };
     }
 }
