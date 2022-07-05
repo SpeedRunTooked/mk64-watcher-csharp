@@ -28,7 +28,7 @@ namespace mk64
                 //Compare 3lap record
                 og_three_lap_record = original[j].records[0][1];
                 three_lap_record    = newrecords[j].records[0][1];
-                if (three_lap_record != og_three_lap_record && og_three_lap_record != null){
+                if (three_lap_record != og_three_lap_record && three_lap_record != null){
                     //TODO - Write send logic here
                     Console.WriteLine("Three lap record mismatch! " + j + " " +  original[j].name);
                 }
@@ -36,7 +36,7 @@ namespace mk64
                 //Compare flap record
                 og_flap_record = original[j].records[5][1];
                 flap_record = newrecords[j].records[5][1];
-                if (flap_record != og_flap_record && og_flap_record != null)
+                if (flap_record != og_flap_record && flap_record != null)
                 {
                     //TODO - Write send logic here
                     Console.WriteLine("F lap record mismatch! " + j + " " + original[j].name);
