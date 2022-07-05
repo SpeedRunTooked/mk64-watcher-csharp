@@ -16,7 +16,7 @@ namespace MainSpace
             //cfg.display_cfg();
 
             //Test for correct reading of EEP file
-            EepWatcher watcher = new EepWatcher();
+            EepBuilder watcher = new EepBuilder();
             watcher.read_directly();
             watcher.display_eep();
 
@@ -25,12 +25,12 @@ namespace MainSpace
 
             //Test for mk64.cs, compare two different all_records objects
             //Static void class so that we do not have to invoke class
-            EepWatcher watcher2 = new EepWatcher();
+            EepBuilder watcher2 = new EepBuilder();
             watcher2.read_directly();
 
             MK64.compare_reocrds(watcher.all_records, watcher2.all_records);
 
-
+            //NEXT STEP -- CREATE THE LOOP
         }
     }
 }

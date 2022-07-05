@@ -7,7 +7,7 @@ using Config;
 
 namespace eep
 {
-    class EepWatcher
+    class EepBuilder
     {
         public byte[]? eep_file;
         public string? eepath;
@@ -65,4 +65,6 @@ namespace eep
             }
         }
     }
+
+    class EepWatcher
 }
