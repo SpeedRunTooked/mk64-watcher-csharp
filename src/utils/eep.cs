@@ -11,7 +11,7 @@ namespace eep
     {
         public byte[]? eep_file;
         public string? eepath;
-        public TrackRecords[]? all_records = new TrackRecords[16]; //list of all records
+        public TrackRecords[] all_records = new TrackRecords[16]; //list of all records
 
         public void read_directly()
         {
