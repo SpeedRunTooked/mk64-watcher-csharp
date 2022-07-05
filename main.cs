@@ -1,6 +1,7 @@
 ﻿using System;
 using Config;
 using eep;
+using mk64;
 
 namespace MainSpace
 {
@@ -17,29 +18,18 @@ namespace MainSpace
             //Test for correct reading of EEP file
             EepWatcher watcher = new EepWatcher();
             watcher.read_directly();
-            //watcher.display_eep();
+            watcher.display_eep();
 
-            //Test for all_records data structure
+            //Test for all_records data structure, print them to screen
             watcher.display_all_records();
 
-            /*NEXT STEPS, THIS DOESN'T WORK!!!
-             * 2 options
-             * -- Write a method which takes 2 "watcher" objects, and iterates through them
-             * -- Remake watcher, to return an array which has {name, record[6] = {character, time}}
-             * ---- Or remove char to simplify?
-             * ---- ??
-             */
-
+            //Test for mk64.cs, compare two different all_records objects
+            //Static void class so that we do not have to invoke class
             EepWatcher watcher2 = new EepWatcher();
             watcher2.read_directly();
 
-            if (watcher.all_records == watcher2.all_records)
-            {
-                Console.WriteLine("They Match!");
-            } else
-            {
-                Console.WriteLine("They Don't");
-            }
+            MK64.compare_reocrds(watcher.all_records, watcher2.all_records);
+
 
         }
     }
