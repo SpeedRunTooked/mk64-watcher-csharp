@@ -18,7 +18,6 @@ namespace TrackRecord
             The records are formatted by {'character': id, 'time': ms}
             */
 
-            int?[] single_record = new int?[2]; //A single record for either 3lap or flap, contains [charID, timeMS]
             int? record_time; //The time in ms
             int? character; //the character ID
             int record_counter = 0;
@@ -48,6 +47,12 @@ namespace TrackRecord
                     record_time = null;
                     character = null;
                 }
+
+                //A single record for either 3lap or flap, contains [charID, timeMS]
+                //NOTE this has to be defined in the loop, since we actually have to
+                //instantiate a new array each time we write it to records[], since
+                //arrays are memory locations not value based
+                int?[] single_record = new int?[2]; 
 
                 //Build our track_records array
                 single_record[0] = character;
