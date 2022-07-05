@@ -78,13 +78,18 @@ namespace eep
 
             EepBuilder neep = new EepBuilder();
 
+            int i = 0;
+
             //Observe for change
+            Console.WriteLine("Watching for new records...");
             while (true)
             {
                 Thread.Sleep(5000);
                 neep.read_directly(eepath);
                 MK64.compare_reocrds(orig.all_records, neep.all_records);
                 orig = neep;
+                Console.WriteLine("Iteration: " + i);
+                i++;
             }
         }
     }
