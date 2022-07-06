@@ -76,8 +76,6 @@ namespace eep
             EepBuilder orig = new EepBuilder();
             orig.read_directly(eepath);
 
-            int i = 0;
-
             //Observe for change
             Console.WriteLine("Watching for new records...");
             while (true)
@@ -87,8 +85,6 @@ namespace eep
                 neep.read_directly(eepath);
                 MK64.compare_reocrds(orig.all_records, neep.all_records);
                 orig = neep;
-                Console.WriteLine("Iteration: " + i);
-                i++;
             }
         }
     }
