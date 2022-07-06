@@ -2,6 +2,7 @@
 using System.Linq;
 using TrackRecord;
 using GameData;
+using uploader;
 
 namespace mk64
 {
@@ -29,8 +30,8 @@ namespace mk64
                 og_three_lap_record = original[j].records[0][1];
                 three_lap_record    = newrecords[j].records[0][1];
                 if (three_lap_record != og_three_lap_record && three_lap_record != null){
-                    //TODO - Write send logic here
-                    Console.WriteLine("Three lap record mismatch! " + j + " " +  original[j].name);
+                    Uploader.post_time(Constants.TRACK_SLUGS[j], three_lap_record, "3lap");
+                    Console.WriteLine("New 3lap record! " + original[j].name + " - Old: " + og_three_lap_record + " New: " + three_lap_record);
                 }
 
                 //Compare flap record
@@ -38,13 +39,10 @@ namespace mk64
                 flap_record = newrecords[j].records[5][1];
                 if (flap_record != og_flap_record && flap_record != null)
                 {
-                    //TODO - Write send logic here
-                    Console.WriteLine("F lap record mismatch! " + j + " " + original[j].name);
+                    Uploader.post_time(Constants.TRACK_SLUGS[j], flap_record, "flap");
+                    Console.WriteLine("New flap record! " + original[j].name + " - Old: " + og_flap_record + " New: " + flap_record);
                 }
-
-                //Console.WriteLine("Done comparing: " + original[j].name + " and " + newrecords[j].name);
             }
-
         }
     }
 }
