@@ -48,7 +48,7 @@ namespace MainSpace
             var client = new RestClient("https://us-central1-mk64-ad77f.cloudfunctions.net/addTime");
             var request = new RestRequest("", Method.Post);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("userId", "testPlayer");
+            request.AddParameter("username", "testPlayer");
             request.AddParameter("trackSlug", "kalimaridesert");
             request.AddParameter("timeMs", 700000);
             request.AddParameter("link", "none");

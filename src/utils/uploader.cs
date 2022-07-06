@@ -8,8 +8,8 @@ namespace uploader
     class Uploader
     {
         //Used in the parameter args
-        private static string link_param = "Auto Uploaded";
-        private static string notes_param = "Auto Rekt C#";
+        private static string link_param = "MK64 Watcher";
+        private static string notes_param = "Auto Rekt"; //TODO - allow this from cfg?
 
         public static string post_time(string track_slug, int? timeMsNullable, string record_type )
         {
@@ -26,7 +26,7 @@ namespace uploader
 
             //Add header and parameters to request object
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("userId", cfg.userID);
+            request.AddParameter("username", cfg.username);
             request.AddParameter("trackSlug", track_slug);
             request.AddParameter("timeMs", timeMs);
             request.AddParameter("link", link_param);
