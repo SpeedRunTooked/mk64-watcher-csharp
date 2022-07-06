@@ -11,7 +11,7 @@ namespace uploader
         private static string link_param = "Auto Uploaded";
         private static string notes_param = "Auto Rekt C#";
 
-        public static string post_time(string track_slug, int timeMs, string record_type )
+        public static string post_time(string track_slug, int? timeMsNullable, string record_type )
         {
             //get endpoint and user from config
             ConfigReader cfg = new ConfigReader();
@@ -20,6 +20,9 @@ namespace uploader
             //Use RestSharp to make a Post request to gus' website
             var client = new RestClient(cfg.db_endpoint);
             var request = new RestRequest("", Method.Post);
+
+            //Convert timems to non-nullable -- See if we can change this in the program
+            int timeMs =  timeMsNullable ?? default(int);
 
             //Add header and parameters to request object
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
