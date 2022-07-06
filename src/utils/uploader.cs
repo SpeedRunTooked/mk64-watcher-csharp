@@ -35,7 +35,7 @@ namespace uploader
 
             //Send it!
             RestResponse response = client.Execute(request);
-            Console.WriteLine("THE RESPONSE: " + response.StatusCode + " - " + response.Content);
+            //Console.WriteLine("THE RESPONSE: " + response.StatusCode + " - " + response.Content);
 
             return response.StatusCode.ToString();
         }
