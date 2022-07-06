@@ -14,7 +14,6 @@ namespace Config
     {
         /// ConfigFile structure, these are the fields in our config.yml file
         public string? username;
-        public string? userID;
         public string? eep_path;
         public string? eep_file;
         public string? db_endpoint;
@@ -25,10 +24,9 @@ namespace Config
             string[] fileText = File.ReadAllLines("config.txt");
 
             username = parse_yaml_line(fileText[0]);
-            userID = parse_yaml_line(fileText[1]);
-            eep_path = parse_yaml_line(fileText[2]);
-            eep_file = parse_yaml_line(fileText[3]);
-            db_endpoint = parse_yaml_line(fileText[4]);
+            eep_path = parse_yaml_line(fileText[1]);
+            eep_file = parse_yaml_line(fileText[2]);
+            db_endpoint = parse_yaml_line(fileText[3]);
 
         }
         public void display_cfg()
@@ -36,7 +34,6 @@ namespace Config
             //Test method to print out our member values
             Console.WriteLine("Displaying config file: ");
             Console.WriteLine("Username: " + username);
-            Console.WriteLine("userID: " + userID);
             Console.WriteLine("eep_path: " + eep_path);
             Console.WriteLine("eep_file: " + eep_file);
             Console.WriteLine("db_endpoint: " + db_endpoint);
