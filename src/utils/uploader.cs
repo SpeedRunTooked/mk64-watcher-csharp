@@ -37,6 +37,16 @@ namespace uploader
             RestResponse response = client.Execute(request);
             //Console.WriteLine("THE RESPONSE: " + response.StatusCode + " - " + response.Content);
 
+            //Catch if username not found! Alert user
+            //TODO - we should check this at the beginning of execution, gus will have to change his backend to have a check method
+            if (response.StatusCode.ToString() != "OK")
+            {
+                Console.WriteLine(response.Content);
+                Console.WriteLine("Time not uploaded! Please make sure username is typed correctly in the config.txt as it is in the website.");
+                Console.WriteLine("Contact site administrator if you have not set up a username.");
+                Console.WriteLine("Please fix issue and restart application to continue...");
+            }
+
             return response.StatusCode.ToString();
         }
     }
