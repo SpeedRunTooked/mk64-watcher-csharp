@@ -55,7 +55,27 @@ namespace MainSpace
             request.AddParameter("notes", "notes go here");
             request.AddParameter("type", "3lap");
             RestResponse response = client.Execute(request);
-            Console.WriteLine("THE RESPONSE: " + response.StatusCode + " - " + response.Content);
+            
+            Console.WriteLine("THE RESPONSE: ");
+
+            Console.WriteLine("Content: " + response.Content);
+            Console.WriteLine("RawBytes: " + response.RawBytes);
+            Console.WriteLine("ContentEncoding: " + response.ContentEncoding);
+            Console.WriteLine("ContentLength: " + response.ContentLength);
+            Console.WriteLine("ContentType: " + response.ContentType);
+            Console.WriteLine("ErrorMessage: " + response.ErrorMessage);
+            Console.WriteLine("ErrorException: " + response.ErrorException);
+            Console.WriteLine("Headers: " + response.Headers);
+            Console.WriteLine("ContentHeaders: " + response.ContentHeaders);
+            Console.WriteLine("IsSuccessful: " + response.IsSuccessful);
+            Console.WriteLine("ResponseStatus: " + response.ResponseStatus);
+            Console.WriteLine("ResponseUri: " + response.ResponseUri);
+            Console.WriteLine("Server: " + response.Server);
+            Console.WriteLine("StatusCode: " + response.StatusCode);
+            Console.WriteLine("StatusDescription: " + response.StatusDescription);
+            Console.WriteLine("Request: " + response.Request);
+            Console.WriteLine("RootElement: " + response.RootElement);
+
         }
     }
 }
