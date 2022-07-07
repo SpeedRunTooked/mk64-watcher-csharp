@@ -14,7 +14,6 @@ namespace eep
 
         public void read_directly(string eepath)
         {
-            Console.WriteLine(eepath);
             /*
             Open EEP path, read as a list of bytes, call TrackRecords, and build array
             of all track records (all_records).
@@ -45,8 +44,8 @@ namespace eep
             {
                 
                 Console.WriteLine(ioEx.Message);
-                //Console.WriteLine("Error: .eep file not found. Please double check your config file and make sure your path to your MARIOKART64.eep file is correct." +
-                //    "Refer to the README.txt for more information");
+                Console.WriteLine(".eep file not found. Please double check your config file and make sure your path to your MARIOKART64.eep file is correct." +
+                   "Refer to the README.txt for instructions");
 
                 Console.WriteLine("Please fix path and restart application to continue...");
 
@@ -55,6 +54,7 @@ namespace eep
                     Console.ReadLine();
                 }
             }
+            //Generic exception catching
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
