@@ -25,7 +25,9 @@ Make sure you are running exactly this emulator and ROM above, if you run the US
 1. Run the emulator at least once before starting the MK64 watcher.
 2. Ensure that the config.txt file is in the same directory as the MK64-Watcher.exe
 3. Configure the config.txt file, fill in the following fields, an example file is filled out:
-    1. "username": Fill in the username you wish to use for the leaderboard website in the (case insensitive)
+    1. "username": Fill in the username you wish to use for the leaderboard website in the (case insensitive).
+        * NOTE- The username must exist in the website. Request a new username if this is your first time.
+        * Username must match exactly as it is in the website
     2. "eep-path": this is the directory of your MK64 save file. Typically found in the /save/ directory where Project64 is installed. 
         * example: C:\Program Files (x86)\Project64 3.0\Save\MARIOKART64-SDFLKJSDF987987SDF\
         * NOTE- make sure you include the slash (\) at the end
