@@ -10,12 +10,12 @@ namespace MainSpace
 
     class RunProgram
     {
-        public static void TestMain(string[] args)
+        public static void Main(string[] args)
         {
             //kick's off the watcher loop
             EepWatcher.watch_eep();
         }
-        public static void Main()
+        public static void TestMain()
         {
             test_https();
             /*
