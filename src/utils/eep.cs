@@ -23,18 +23,48 @@ namespace eep
             //Then read the next 24 bytes, etc etc.
             //We don't want to read the whole file, since there is a lot of stuff that's not needed
             //So just every 24 bits for every track.
-            FileStream stream = new FileStream(eepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            byte[] block = new byte[24];
-            int i = 0;
-            foreach (string track in Constants.TRACK_NAMES) {
-                stream.Read(block, 0, 24);
-                TrackRecords tr = new TrackRecords();
-                tr.name = track;
-                tr.build_record(block);
-                all_records[i] = tr;
-                i++;
-            };
-            stream.Close();
+            try
+            {
+                FileStream stream = new FileStream(eepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                byte[] block = new byte[24];
+                int i = 0;
+                foreach (string track in Constants.TRACK_NAMES)
+                {
+                    stream.Read(block, 0, 24);
+                    TrackRecords tr = new TrackRecords();
+                    tr.name = track;
+                    tr.build_record(block);
+                    all_records[i] = tr;
+                    i++;
+                };
+                stream.Close();
+            }
+            //If the eep file is not found, do this
+            catch (IOException ioEx)
+            {
+                
+                Console.WriteLine(ioEx.Message);
+                Console.WriteLine(".eep file not found. Please double check your config file and make sure your path to your MARIOKART64.eep file is correct." +
+                   "Refer to the README.txt for instructions");
+
+                Console.WriteLine("Please fix path and restart application to continue...");
+
+                //Break execution, user must restart
+                while (true) {
+                    Console.ReadLine();
+                }
+            }
+            //Generic exception catching
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+
+                //Break execution, user must restart
+                while (true)
+                {
+                    Console.ReadLine();
+                }
+            }
         }
 
         public void display_eep(string eepath)

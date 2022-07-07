@@ -21,12 +21,25 @@ namespace Config
         public void get_config()
         {
             //Read config file and parse out into each member variable
-            string[] fileText = File.ReadAllLines("config.txt");
-
-            username = parse_yaml_line(fileText[0]);
-            eep_path = parse_yaml_line(fileText[1]);
-            eep_file = parse_yaml_line(fileText[2]);
-            db_endpoint = parse_yaml_line(fileText[3]);
+            try
+            {
+                string[] fileText = File.ReadAllLines("config.txt");
+                username = parse_yaml_line(fileText[0]);
+                eep_path = parse_yaml_line(fileText[1]);
+                eep_file = parse_yaml_line(fileText[2]);
+                db_endpoint = parse_yaml_line(fileText[3]);
+            }
+            catch (IOException ioEx)
+            {
+                Console.WriteLine(ioEx.Message);
+                Console.WriteLine("config.txt file not found. Please make sure file is in the same directory as the .exe");
+                Console.WriteLine("Please fix path and restart application to continue...");
+                //Break execution, user must restart
+                while (true)
+                {
+                    Console.ReadLine();
+                }
+            }
 
         }
         public void display_cfg()
