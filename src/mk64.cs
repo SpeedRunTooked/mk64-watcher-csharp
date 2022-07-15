@@ -8,7 +8,7 @@ namespace mk64
 {
     class MK64
     {
-        public static void compare_reocrds(TrackRecords[] original, TrackRecords[] newrecords)
+        public static void compare_records(TrackRecords[] original, TrackRecords[] newrecords)
         {
             /*
              * Take the original all_records array and compare it to the newly pulled all_records array

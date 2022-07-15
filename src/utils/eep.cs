@@ -113,7 +113,7 @@ namespace eep
                 Thread.Sleep(5000);
                 EepBuilder neep = new EepBuilder(); //Do we need to garbagecollect this? Will it cause it to grow?
                 neep.read_directly(eepath);
-                MK64.compare_reocrds(orig.all_records, neep.all_records);
+                MK64.compare_records(orig.all_records, neep.all_records);
                 orig = neep;
             }
         }
